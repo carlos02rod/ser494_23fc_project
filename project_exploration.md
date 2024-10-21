@@ -5,7 +5,7 @@
 
 #### Dataset 1(Chicken-Report.xlsx): 
 MD5 Hash: 68c0fe589bbb6913416fca464816b503
-Site: https://www.bls.gov/data/home.htm#prices (Average price data - chicken)
+Site: https://www.bls.gov/data/home.htm#prices (Average price data(top pick) - chicken)
 Author: U.S. BUREAU OF LABOR STATISTICS
 Constructed: 10/04/24
 - Contains monthly figures on the average price of a pound of
@@ -16,7 +16,7 @@ combining all figures in the country.
 
 #### Dataset 2(Electricity-Report.xlsx):
 MD5 Hash: ec1dc075950fe49fc71388b05e9c513b
-Site: https://www.bls.gov/data/home.htm#prices (Average price data - electricity)
+Site: https://www.bls.gov/data/home.htm#prices (Average price data (top pick)- electricity)
 Author: U.S. BUREAU OF LABOR STATISTICS
 Constructed: 10/04/24
 - Contains monthly figures on the average price of 1 KWK from 2014 to 2024(not seasonally adjusted).
@@ -26,7 +26,7 @@ combining all figures in the country.
 
 #### Dataset 3(Gasoline-Report.xlsx): 
 MD5 Hash: 7823fc56a57da1251b2d6b63e05aea31
-Site: https://www.bls.gov/data/home.htm#prices (Average price data - gasoline)
+Site: https://www.bls.gov/data/home.htm#prices (Average price data(top pick),  - gasoline, unleaded regular)
 Author: U.S. BUREAU OF LABOR STATISTICS
 Constructed: 10/04/24
 - Contains monthly figures on the average price of a gallon of gasoline from 2014 to 2024(not seasonally adjusted).
@@ -36,7 +36,7 @@ combining all figures in the country.
 
 #### Dataset 4(Inflation-Report.xlsx): 
 MD5 Hash: 854522bd809acfb5b34c1845ea72b008
-Site: https://www.bls.gov/data/home.htm#prices ((All urban consumers) 12-month average CPI of all items)
+Site: https://www.bls.gov/data/home.htm#prices ((All urban consumers(current series)(top pick), all items) format to 12-month percent change)
 Author: U.S. BUREAU OF LABOR STATISTICS
 Constructed: 10/04/24
 - Contains monthly figures of 12-month US inflation rate from 2014 to 2024(not seasonally adjusted).
@@ -46,7 +46,7 @@ combining all figures in the country.
 
 #### Dataset 5(Confidence-Report.csv): 
 MD5 Hash: 9447485211a567adde4acfbad696c74f
-Site: https://www.oecd.org/en/data/indicators/consumer-confidence-index-cci.html?oecdcontrol-b2a0dbca4d-var3=2014-10&oecdcontrol-b2a0dbca4d-var4=2024-06 (consumer confidence based off an index)
+Site: https://www.oecd.org/en/data/indicators/consumer-confidence-index-cci.html?oecdcontrol-b2a0dbca4d-var3=2014-10&oecdcontrol-b2a0dbca4d-var4=2024-06 (consumer confidence based off an index (CSV download))
 Author: Organisation for Economic Co-operation and Development
 Constructed: 10/04/24
 - Contains monthly figures of the Consumer-confidence index from 2014 to 2024(not seasonally adjusted).
@@ -106,14 +106,12 @@ the overall anxiety of consumers across the country. An example where it fails i
 lowering interest rates, and it reaches 0, it will decimate confidence because the only tool keeping inflation at bay has been lost, losing all leverage they had in recovering, leaving a scare in the market,
 massive sale offs, layoffs and a stall in commercial spending. this of course is worst case scenario... but entirely possible...
 
+U.S. Bureau of Labor Statistics. (2024). "Average price - chicken"., https://www.bls.gov/data/home.htm#prices.
 
-U.S. Bureau of Labor Statistics. (2024). "Average price data - chicken." Retrieved from https://www.bls.gov/data/home.htm#prices
+Organisation for Economic Co-operation and Development. (2024). "Consumer Confidence Index"., https://www.oecd.org.
 
-Organisation for Economic Co-operation and Development. (2024). "Consumer Confidence Index." Retrieved from https://www.oecd.org
-
-Federal Reserve Bank of St. Louis. "Effective Federal Funds Rate (FEDFUNDS)." FRED, Federal Reserve Bank of St. Louis, n.d.,
+Federal Reserve Bank of St. Louis. "Effective Federal Funds Rate" FRED, Federal Reserve Bank of St. Louis, n.d.,
 https://fred.stlouisfed.org/series/FEDFUNDS.
-
 
 
 ## Dataset Generality
@@ -128,11 +126,50 @@ that get affected by it.
 
 
 ## Data Transformations
-### Transformation N
-**Description:** TODO
-**Soundness Justification:** TODO
-(duplicate above as many times as needed; remove this line when done)
+### Transformation Standardization
+**Description:** Some of the data arent in the correct scale throwing off the analysis and not allowing us too see insights
+**Soundness Justification:** found the z-score of the data to then put it into a comparison against other data sets so we are able to see insights.
+gas and confidence score are ways apart and didn't really turn out well without standardization.
+
+### Transformation Structural
+**Description:** Moving csv and xlsx into a more central location while making it more readable for the program and peer review.
+**Soundness Justification:** Most of my data came in separate but organized sets, some by csv and xlsx. I needed to combine the data into a singular
+csv, so I can later turn the data into a dataFrame to make analysis and visualization easier to achieve.
+
+### Transformation Aggregation
+**Description:** need to make all the data sets uniform and similar in size
+**Soundness Justification:** The data sets aren't all the same size are we are visualizing data compared to other sets to find relationships, doesn't make much sense compare if we run out of data to compare.
+we make the longer sets shorter, and we fill in the missing data sets for some of the lower sets so we can come to a compromise.
+
+### Transformation Smoothing
+**Description:** Some missing data is interrupting the analysis so filling in with a educated guess can help us.
+**Soundness Justification:** We need to smooth out some of the outliers. for instance, we are comparing gas prices, gas prices sunk one day and bounced back in our dataset. We know in the real world this never happens so we
+edit the dataset to show a more realistic outcome that doesn't throw off our mean, medians.
+
+
 ## Visualizations
-### Visual N
-**Analysis:** TODO
-(duplicate above as many times as needed; remove this line when done)
+### Visual Confidence Histogram
+**Analysis:** The histogram weighs heavily towards the upper 100 and over. What we can derive from this is that peoples confidence usually stay above great and people continue
+to spend even if the market conditions warn them otherwise. the range toward the bottoms shows that people do lose confidence and when they do it is usually immediate and overly dramatic and rises back up 
+as quick as it went down.
+
+### Visual Gasoline Histogram
+**Analysis:** The Most amount of occurrences for gas prices are within the 2 to 3 dollar range and this is what americans expect
+when it comes to gas prices because its most common. as of late that hasn't been the case, the scale contains instances where it has reached least 4 dollars.
+this may become the new normal eventually since inflation pushes that amount higher up but as of now the median remains above average leaning towards 3.5.
+
+### Visual Gasoline Vs Inflation
+**Analysis:** Gas prices are what most Americans base there inflation or price increase experiences, you hear it alot on the campaign
+trails from politicians promising lower gas prices, so they are usually a benchmark for inflation.
+in this chart we can see a clear cause and effect relationship. inflation spikes and gas prices is soon to follow. Gas prices appear to drop
+before inflation does so the relationship is inverse.
+
+### Visual Chicken Vs. Inflation
+**Analysis:** Within this relationship there isn't a clear correlation but the effects are almost certain. during certain periods of times we see spikes and we can map
+this to the pandemic as the perpetrator and that seems to be the case with most of the price changes. I can conclude that inflation steadily rising we see pockets in which prices
+drop for chicken, but gradually it will always increase in prices and most times parallel with inflation.
+
+### Visual Chicken Vs. Gasoline
+**Analysis:** With gas prices usually being affected by different factors like world events like a pipeline closer or even international tensions, chicken is more consistent. 4 things
+are certain, death, taxes, and chicken/gas prices going up. With how different these products are they are surprisingly similar except in 07/21 when chicken prices dropped significantly but came
+back up quickly and evened out.
