@@ -1,0 +1,30 @@
+Model: inflation_electricity_vs_confidence_ridge
+MSE: 0.681
+MAE: 0.610
+MedAE: 0.421
+-------------------------------------
+Model: inflation_electricity_vs_confidence_lasso
+MSE: 1.279
+MAE: 0.912
+MedAE: 0.823
+-------------------------------------
+Model: inflation_electricity_vs_confidence
+MSE: 0.681
+MAE: 0.609
+MedAE: 0.421
+-------------------------------------
+Model: gasoline_vs_confidence
+MSE: 0.736
+MAE: 0.665
+MedAE: 0.598
+-------------------------------------
+Model: all_vs_confidence
+MSE: 0.445
+MAE: 0.515
+MedAE: 0.426
+-------------------------------------
+Model: all_vs_confidence_regular
+MSE: 0.682
+MAE: 0.639
+MedAE: 0.527
+-------------------------------------

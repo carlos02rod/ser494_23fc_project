@@ -1,0 +1,5 @@
+              chicken  electricity  gasoline  inflation
+chicken      1.000000     0.996112  0.997047   0.999915
+electricity  0.996112     1.000000  0.986406   0.994880
+gasoline     0.997047     0.986406  1.000000   0.997963
+inflation    0.999915     0.994880  0.997963   1.000000
